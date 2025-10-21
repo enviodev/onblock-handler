@@ -4,7 +4,7 @@
 
 The `onBlock` API of HyperIndex lets you run custom logic on every block or at fixed block intervals. This is useful for aggregations, time-series operations, and bulk updates.
 
-In this example, we'll walk through using the `onBlock` handler to take a snapshot of a token's total supply every 1000 blocks.
+In this example, we'll walk through how to use the `onBlock` handler to take a snapshot of a token's total supply every 1000 blocks.
 
 ## Creating the Handler
 
@@ -17,7 +17,7 @@ import { onBlock } from "generated";
 The `onBlock` function takes two arguments:
 
 1. **Options** – configure the handler's name, the chain it should run on, and interval-related settings such as `interval`, `startBlock`, and `stopBlock`.
-2. **Handler function** – contains your custom logic. Like event handlers, it has access to relevant data, but in this case, block-level values like `timestamp` and `chainId`.
+2. **Handler function** – contains your custom logic. Similar event handlers, it has access to relevant data, which in this case is block values like `timestamp` and `chainId`.
 
 Example usage:
 
@@ -58,4 +58,4 @@ pnpm codegen
 
 ## GraphQL Playground
 
-While indexer running, visit the Envio Console([https://envio.dev/console](https://envio.dev/console)) to open the GraphQL Playground and query your indexed data.
+While indexer is running, visit the Envio Console([https://envio.dev/console](https://envio.dev/console)) to open the GraphQL Playground and query your indexed data.
