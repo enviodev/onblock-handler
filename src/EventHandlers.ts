@@ -1,11 +1,11 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import { ERC20, onBlock } from "generated";
+import { indexer } from "envio";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
-onBlock(
+indexer.onBlock(
   {
     name: "TotalSupplySnapshot",
     chain: 1,
@@ -24,7 +24,9 @@ onBlock(
   }
 );
 
-ERC20.Transfer.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ERC20", event: "Transfer" },
+  async ({ event, context }) => {
   const { from, to, amount } = event.params;
 
   // Only track transfers to/from zero address (minting/burning)
@@ -50,4 +52,5 @@ ERC20.Transfer.handler(async ({ event, context }) => {
     blockNumber: event.block.number,
     timestamp: event.block.timestamp,
   });
-});
+}
+);
